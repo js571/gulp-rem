@@ -1,7 +1,7 @@
 {
-    "name": "qn-ueditor",
+    "name": "gulp-rem",
     "version": "1.0.1",
-    "description": "express中间件，ueditor上传到七牛",
+    "description": "a gulp plugin change px to rem",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,14 +14,14 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git@github.com:js571/qn-ueditor.git",
-        "web": "https://github.com/node-modules/qn-ueditor"
+        "url": "https://github.com/js571/gulp-rem.git",
+        "web": "https://github.com/js571/gulp-rem.git"
     },
     "bugs": {
-        "url": "https://github.com/node-modules/qn-ueditor/issues",
+        "url": "https://github.com/js571/gulp-rem/issues",
         "email": "464896740@qq.com"
     },
-    "author": "maat",
+    "author": "Maat",
     "license": "MIT",
     "dependencies": {
         "gulp-util": "^3.0.4",
