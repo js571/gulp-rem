@@ -1,0 +1,31 @@
+{
+    "name": "qn-ueditor",
+    "version": "1.0.1",
+    "description": "express中间件，ueditor上传到七牛",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "gulp-rem",
+        "gulp",
+        "rem",
+        "rem2px"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:js571/qn-ueditor.git",
+        "web": "https://github.com/node-modules/qn-ueditor"
+    },
+    "bugs": {
+        "url": "https://github.com/node-modules/qn-ueditor/issues",
+        "email": "464896740@qq.com"
+    },
+    "author": "maat",
+    "license": "MIT",
+    "dependencies": {
+        "gulp-util": "^3.0.4",
+        "object-assign": "^2.0.0",
+        "through2": "^0.6.3"
+    }
+}
