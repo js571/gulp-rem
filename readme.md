@@ -19,6 +19,8 @@ gulp.task('build-css', function() {
     .pipe(plugins.cssmin())
     .pipe(gulp.dest('./css'))
 });
+
+//
 ```
 
 
@@ -27,12 +29,12 @@ gulp.task('build-css', function() {
 ```
 ｛
 	prop: 100, // default 100，1rem = 100px
-	unit: 'pm' // default 'pm', 100pm will change to 1rem
+	unit: 'pm' // default 'px', 100pm will change to 1rem
 ｝
 
 ```
 
-> sorry for may poor english ..
+> sorry for my poor english ..
 
 
 

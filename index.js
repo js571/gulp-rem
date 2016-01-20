@@ -19,7 +19,7 @@ module.exports = function (options) {
     function convert(contents){
         var str = contents.toString('utf8');
         var regex = new RegExp('\-?([0-9]+?)('+ options.unit +')','gi');
-        str = str.replace(regex,($0,$1) => {
+        str = str.replace(regex,function($0,$1) {
             return ($1 / options.prop) + 'rem';
         });
         return new Buffer(str);
