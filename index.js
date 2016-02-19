@@ -8,8 +8,8 @@ var PluginError    = gutil.PluginError;
 module.exports = function (options) {
   // Mixes in default options.
     // default settings{
-    //    1rem = 100px
-    //    unit = px  
+    //    prop: 100
+    //    unit: px  
     // }
     options = assign({}, {
         prop: 100,
@@ -20,7 +20,7 @@ module.exports = function (options) {
         var str = contents.toString('utf8');
         var regex = new RegExp('\-?([0-9]+?)('+ options.unit +')','gi');
         str = str.replace(regex,function($0,$1) {
-            return ($1 / options.prop) + 'rem';
+            return $1 > 1 ? ($1 / options.prop) + 'rem' : '1px';
         });
         return new Buffer(str);
     }    

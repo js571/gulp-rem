@@ -1,6 +1,6 @@
 {
     "name": "gulp-rem",
-    "version": "1.0.3",
+    "version": "1.0.6",
     "description": "a gulp plugin change px to rem",
     "main": "index.js",
     "scripts": {
