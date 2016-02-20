@@ -7,12 +7,8 @@ var PluginError    = gutil.PluginError;
 
 module.exports = function (options) {
   // Mixes in default options.
-    // default settings{
-    //    prop: 100
-    //    unit: px  
-    // }
     options = assign({}, {
-        prop: 100,
+        width: 640,
         unit: 'px'
     }, options);
 
@@ -20,7 +16,8 @@ module.exports = function (options) {
         var str = contents.toString('utf8');
         var regex = new RegExp('\-?([0-9]+?)('+ options.unit +')','gi');
         str = str.replace(regex,function($0,$1) {
-            return $1 > 1 ? ($1 / options.prop) + 'rem' : '1px';
+            var res  = $1*320/options.width/20;
+            return $1 > 1 ? res + 'rem' : '1px';
         });
         return new Buffer(str);
     }    
