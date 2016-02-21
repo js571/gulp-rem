@@ -5,6 +5,8 @@ npm install gulp-rem
 ```
 * useage
 
+gulp-rem words with hotcss
+
 ```
 // gulpfile.js
 var rem = require('gulp-rem');
@@ -13,7 +15,7 @@ gulp.task('build-css', function() {
     return gulp.src('./less/base.less')
     .pipe(plugins.less())
     .pipe(rem({
-         prop:40,
+         width:640,
          unit:'pm'
     }))
     .pipe(plugins.cssmin())
@@ -28,7 +30,7 @@ gulp.task('build-css', function() {
 
 ```
 ｛
-	prop: 100, // default 100，1rem = 100px
+	width: 640, // Width of the design draft
 	unit: 'pm' // default 'px', 100pm will change to 1rem
 ｝
 
