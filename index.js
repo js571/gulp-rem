@@ -14,10 +14,10 @@ module.exports = function (options) {
 
     function convert(contents){
         var str = contents.toString('utf8');
-        var regex = new RegExp('\-?([0-9]+?)('+ options.unit +')','gi');
+        var regex = new RegExp('\([?]*[0-9]+?)('+ options.unit +')','gi');
         str = str.replace(regex,function($0,$1) {
             var res  = $1*320/options.width/20;
-            return $1 > 1 ? res + 'rem' : '1px';
+            return res + 'rem';
         });
         return new Buffer(str);
     }    
