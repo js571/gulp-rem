@@ -5,7 +5,7 @@ npm install gulp-rem
 ```
 * useage
 
-gulp-rem words with hotcss
+gulp-rem works with hotcss.js
 
 ```
 // gulpfile.js
