@@ -31,7 +31,7 @@ gulp.task('build-css', function() {
 ```
 ｛
 	width: 640, // Width of the design draft
-	unit: 'pm' // default 'px', 100pm will change to 1rem
+	unit: 'pm' // 单位为pm的会被转换为rem
 ｝
 
 ```
