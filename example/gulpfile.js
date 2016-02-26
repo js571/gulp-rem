@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 var browserSync = require('browser-sync').create(),
     reload = browserSync.reload;
 
-var rem = require('gulp-rem');
+var rem = require('../index');
 
 var staticBase = './';
 
@@ -14,6 +14,11 @@ var cssDst = `${staticBase}css`;
 
 gulp.task('build-css', function() {
     return gulp.src([cssSrc + '/*.less', cssSrc + '/**/*.less'])
+        .pipe(rem({
+            width: 640,
+            unit: 'pm'
+        }))
+        .pipe(gulp.dest('./css2'))
         .pipe(plugins.less())
         .pipe(plugins.autoprefixer({
             browsers: [
@@ -26,11 +31,6 @@ gulp.task('build-css', function() {
                 'android >= 2.3'
             ]
         }))
-        .pipe(rem({
-            width: 640,
-            unit: 'pm'
-        }))
-        .pipe(plugins.cssmin())
         .pipe(gulp.dest(cssDst))
         .pipe(reload({
             stream: true

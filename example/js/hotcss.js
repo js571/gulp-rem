@@ -1,6 +1,8 @@
-(function(window, document) {
+(function( window , document ){
 
     'use strict';
+
+
 
     //给hotcss开辟个命名空间，别问我为什么，我要给你准备你会用到的方法，免得用到的时候还要自己写。
     var hotcss = {};
@@ -14,11 +16,22 @@
             maxWidth = 540,
             designWidth = 0;
 
-        console.log(dpr);
+        //如果是小米手机直接放弃高清方案
+        if(navigator.userAgent.match(/[\s|;]MI\b/i)){
+            if(!hotcssEl){
+                hotcssEl = document.createElement('meta');
+                hotcssEl.setAttribute('name','viewport');
+                document.querySelector('head').appendChild(hotcssEl);
+            }
+
+            hotcssEl.setAttribute('content','content="initial-dpr=1"');
+        }  
 
         //允许通过自定义name为hotcss的meta头，通过initial-dpr来强制定义页面缩放
         if (hotcssEl) {
             var hotcssCon = hotcssEl.getAttribute('content');
+            
+
             if (hotcssCon) {
                 var initialDprMatch = hotcssCon.match(/initial\-dpr=([\d\.]+)/);
                 if (initialDprMatch) {
@@ -35,15 +48,13 @@
             }
         }
 
-        console.log(dpr);
-
         document.documentElement.setAttribute('data-dpr', dpr);
         hotcss.dpr = dpr;
 
         document.documentElement.setAttribute('max-width', maxWidth);
         hotcss.maxWidth = maxWidth;
 
-        if (designWidth) {
+        if( designWidth ){
             document.documentElement.setAttribute('design-width', designWidth);
             hotcss.designWidth = designWidth;
         }
@@ -62,62 +73,59 @@
 
     })();
 
-    hotcss.px2rem = function(px, designWidth) {
+    hotcss.px2rem = function( px , designWidth ){
         //预判你将会在JS中用到尺寸，特提供一个方法助你在JS中将px转为rem。就是这么贴心。
-        if (!designWidth) {
+        if( !designWidth ){
             //如果你在JS中大量用到此方法，建议直接定义 hotcss.designWidth 来定义设计图尺寸;
             //否则可以在第二个参数告诉我你的设计图是多大。
-            designWidth = parseInt(hotcss.designWidth, 10);
+            designWidth = parseInt(hotcss.designWidth , 10);
         }
 
-        return parseInt(px, 10) * 320 / designWidth / 20;
+        return parseInt(px,10)*320/designWidth/20;
     }
 
-    hotcss.rem2px = function(rem, designWidth) {
+    hotcss.rem2px = function( rem , designWidth ){
         //新增一个rem2px的方法。用法和px2rem一致。
-        if (!designWidth) {
-            designWidth = parseInt(hotcss.designWidth, 10);
+        if( !designWidth ){
+            designWidth = parseInt(hotcss.designWidth , 10);
         }
         //rem可能为小数，这里不再做处理了
-        return rem * 20 * designWidth / 320;
+        return rem*20*designWidth/320;
     }
 
-    hotcss.mresize = function() {
+    hotcss.mresize = function(){
         //对，这个就是核心方法了，给HTML设置font-size。
         var innerWidth = document.documentElement.getBoundingClientRect().width || window.innerWidth;
 
-        if (hotcss.maxWidth && (innerWidth / hotcss.dpr > hotcss.maxWidth)) {
-            innerWidth = hotcss.maxWidth * hotcss.dpr;
+        if( hotcss.maxWidth && (innerWidth/hotcss.dpr > hotcss.maxWidth) ){
+            innerWidth = hotcss.maxWidth*hotcss.dpr;
         }
 
-        if (!innerWidth) {
-            return false;
-        }
+        if( !innerWidth ){ return false;}
 
-        document.documentElement.style.fontSize = (innerWidth * 20 / 320) + 'px';
-
+        document.documentElement.style.fontSize = ( innerWidth*20/320 ) + 'px';
     };
 
-    hotcss.mresize();
+    hotcss.mresize(); 
     //直接调用一次
 
-    window.addEventListener('resize', function() {
-        clearTimeout(hotcss.tid);
-        hotcss.tid = setTimeout(hotcss.mresize, 33);
-    }, false);
+    window.addEventListener( 'resize' , function(){
+        clearTimeout( hotcss.tid );
+        hotcss.tid = setTimeout( hotcss.mresize , 33 );
+    } , false ); 
     //绑定resize的时候调用
 
-    window.addEventListener('load', hotcss.mresize, false);
+    window.addEventListener( 'load' , hotcss.mresize , false ); 
     //防止不明原因的bug。load之后再调用一次。
 
 
-    setTimeout(function() {
-        hotcss.mresize();
+    setTimeout(function(){
+        hotcss.mresize(); 
         //防止某些机型怪异现象，异步再调用一次
-    }, 333)
+    },333)
 
-    window.hotcss = hotcss;
+    window.hotcss = hotcss; 
     //命名空间暴露给你，控制权交给你，想怎么调怎么调。
 
 
-})(window, document);
+})( window , document );
