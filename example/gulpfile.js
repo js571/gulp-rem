@@ -18,7 +18,6 @@ gulp.task('build-css', function() {
             width: 640,
             unit: 'pm'
         }))
-        .pipe(gulp.dest('./css2'))
         .pipe(plugins.less())
         .pipe(plugins.autoprefixer({
             browsers: [
